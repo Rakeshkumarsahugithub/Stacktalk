@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 import axios from 'axios';
+import './Details.css';
+
 
 function QuestionDetail() {
   const { id } = useParams();

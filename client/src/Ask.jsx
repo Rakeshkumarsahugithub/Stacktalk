@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 import axios from 'axios';
+import './Ask.css';
 
 function Ask() {
   const [title, setTitle] = useState('');

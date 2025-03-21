@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 import axios from 'axios';
+import './Home.css';
 
 function Home() {
   const [username, setUsername] = useState('');
@@ -20,6 +21,7 @@ function Home() {
   };
 
   return (
+    
     <form onSubmit={handleSubmit}>
       <input value={username} onChange={(e) => setUsername(e.target.value)} required />
       <button type="submit">Enter</button>

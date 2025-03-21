@@ -70,14 +70,34 @@ app.post('/questions', async (req, res) => {
 
   app.post('/questions/:id/answers', async (req, res) => {
     try {
-      const user = await User.findOne({ username: req.body.username });
-      if (!user) throw new Error('User not found');
+      const { username, answer } = req.body;
+  
+      // Validate input
+      if (!username || !answer) {
+        return res.status(400).json({ error: 'Username and answer are required' });
+      }
+  
+      // Check if the user exists
+      const user = await User.findOne({ username });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Find the question by ID
       const question = await Question.findById(req.params.id);
-      question.answers.push(req.body);
+      if (!question) {
+        return res.status(404).json({ error: 'Question not found' });
+      }
+  
+      // Add the answer to the question
+      question.answers.push({ username, answer });
       await question.save();
-      res.status(201).json(question.answers.slice(-1)[0]);
+  
+      res.status(201).json(question); // Return the entire question
+      
     } catch (error) {
-      res.status(400).json({ error: 'Invalid user or data' });
+      console.error('Error adding answer:', error);
+      res.status(500).json({ error: 'Failed to add answer' });
     }
   });
 

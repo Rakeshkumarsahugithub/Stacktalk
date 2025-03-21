@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 import axios from 'axios';
+import './Myquestions.css';
 
 function MyQuestions() {
   const { username } = useUser();
