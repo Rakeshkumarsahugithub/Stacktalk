@@ -10,7 +10,7 @@ function MyQuestions() {
 
   useEffect(() => {
     if (username) {
-      axios.get(`http://localhost:3001/user/${username}/questions`).then(res => setQuestions(res.data));
+      axios.get(`http://localhost:3000/user/${username}/questions`).then(res => setQuestions(res.data));
     }
   }, [username]);
 

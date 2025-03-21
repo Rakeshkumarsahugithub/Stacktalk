@@ -11,12 +11,12 @@ function QuestionDetail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3002/questions/${id}`).then(res => setQuestion(res.data));
+    axios.get(`http://localhost:3000/questions/${id}`).then(res => setQuestion(res.data));
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(`http://localhost:3002/questions/${id}/answers`, { username, answer });
+    await axios.post(`http://localhost:3000/questions/${id}/answers`, { username, answer });
     setAnswer('');
     setQuestion(prev => ({ ...prev, answers: [...prev.answers, { username, answer }] }));
   };
