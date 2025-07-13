@@ -8,8 +8,12 @@ export function UserProvider({ children }) {
     localStorage.setItem('username', newUsername);
     setUsername(newUsername);
   };
+  const logout = () => {
+    localStorage.removeItem('username');
+    setUsername('');
+  };
   return (
-    <UserContext.Provider value={{ username, login }}>
+    <UserContext.Provider value={{ username, login, logout }}>
       {children}
     </UserContext.Provider>
   );
